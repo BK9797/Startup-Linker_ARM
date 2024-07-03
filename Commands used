@@ -1,0 +1,9 @@
+Arm gcc:
+1)arm-none-eabi-gcc -c -g -I . -mcpu=arm926ej-s app.c -o app.o
+2)arm-none-eabi-objdump -h app.o
+3)arm-none-eabi-ld -T linker_script.ld app.o uart.o startup.o -o bisho.elf
+4)arm-none-eabi-objdump -D  bisho.elf   
+5)arm-none-eabi-nm  bisho.elf
+6)arm-none-eabi-ld -T linker_script.ld -Map=output.map app.o uart.o startup.o -o bisho.elf 
+7)arm-none-eabi-objcopy -O binary bisho.elf bisho.bin
+8)qemu-system-arm -M versatilepb -kernel bisho.bin -nographic
